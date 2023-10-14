@@ -34,19 +34,3 @@ articulo int,
 fecha date
 );
 
-select * from orden;
-
-create view VistaDiciembre21 
-as
-select
-    COUNT(*) as NumeroDeOrdenes,
-    habitaciones.tipo_habitacion as TipoDeHabitacion,
-    tramo_horario.detalle_horario as TramoHorario
-from orden
-join habitaciones on orden.id_habitacion = habitaciones.id_habitacion
-join tramo_horario on tramo_horario.id_seccion = tramo_horario.id_seccion 
-where fecha >= '2021-12-01' and fecha <= '2021-12-31'
-group by habitaciones.tipo_habitacion, tramo_horario.detalle_horario;
-
-select * from vistadiciembre21;
-call SP_ConsultarOrdenesPorFecha('2021-01-01', '2021-12-31');
